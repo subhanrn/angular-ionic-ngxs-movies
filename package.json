@@ -36,7 +36,6 @@
     "@ngxs/form-plugin": "^3.6.2",
     "@ngxs/storage-plugin": "^3.6.2",
     "@ngxs/store": "^3.6.2",
-    "angular-star-rating": "^4.0.0-beta.3",
     "capacitor-youtube-player": "1.0.0-alpha.1-48",
     "core-js": "^2.6.11",
     "css-star-rating": "^1.2.4",

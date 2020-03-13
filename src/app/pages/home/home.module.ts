@@ -11,7 +11,7 @@ import { HomeComponentRoutingModule } from './home-routing.module';
 
 import { NgSelectModule } from '@ng-select/ng-select';
 
-import { StarRatingModule } from 'angular-star-rating';
+// import { StarRatingModule } from 'angular-star-rating';
 
 import { GenreCarouselComponent } from '../../components/genre-carousel/genre-carousel.component';
 
@@ -27,7 +27,7 @@ import { NtkmeButtonModule } from '@ctrl/ngx-github-buttons';
     NgSelectModule,
     ReactiveFormsModule,
     FormsModule,
-    StarRatingModule.forRoot(),
+    // StarRatingModule.forRoot(),
     NtkmeButtonModule
   ],
   declarations: [HomeComponent, MovieModalComponent, FilterMoviePopoverComponent, FavoritesMoviesModalComponent, GenreCarouselComponent,
