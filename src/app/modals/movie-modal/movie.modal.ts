@@ -1,14 +1,14 @@
-import { Component, ViewEncapsulation, OnInit, Renderer2, AfterViewInit } from '@angular/core';
-import { ModalController, NavParams } from '@ionic/angular';
+import {Component, ViewEncapsulation, OnInit, Renderer2, AfterViewInit} from '@angular/core';
+import {ModalController, NavParams} from '@ionic/angular';
 
-import { Store, Actions } from '@ngxs/store';
-import { UpdateFormValue, UpdateFormStatus } from '@ngxs/form-plugin';
-import { AddMovie, EditMovie } from '../../store/actions/movies.actions';
-import { Movie } from '../../models/movie.model';
+import {Store} from '@ngxs/store';
+import {UpdateFormValue, UpdateFormStatus} from '@ngxs/form-plugin';
+import {AddMovie, EditMovie} from '../../store/actions/movies.actions';
+import {Movie} from '../../models/movie.model';
 
-import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+import {FormBuilder, FormGroup, FormControl, Validators} from '@angular/forms';
 
-import { Observable } from 'rxjs';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-movie-modal',
@@ -57,10 +57,10 @@ export class MovieModalComponent implements OnInit, AfterViewInit {
     {id: 9, name: 'Romance', image: 'assets/movies-genres/romance.png'},
     {id: 10, name: 'Science fiction', image: 'assets/movies-genres/science fiction.png'},
     {id: 11, name: 'Westerns', image: 'assets/movies-genres/westerns.png'}
-];
+  ];
 
   constructor(private formBuilder: FormBuilder, private modalCtrl: ModalController, public navParams: NavParams, private store: Store,
-              private actions$: Actions, private renderer: Renderer2) {
+              private renderer: Renderer2) {
     this.emptyMovie = this.movie;
     this.createForm();
   }
@@ -87,7 +87,7 @@ export class MovieModalComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-    this.modal = { ...this.navParams.data.modalProps};
+    this.modal = {...this.navParams.data.modalProps};
     if (this.navParams.data.option === 'edit') {
       // this.movie = { ...this.navParams.data.modalProps.movie };
       this.movieForm.patchValue(this.navParams.data.modalProps.movie);

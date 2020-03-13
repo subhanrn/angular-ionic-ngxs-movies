@@ -1,15 +1,14 @@
-import { Component, ViewEncapsulation, OnInit, OnDestroy, NgZone } from '@angular/core';
-import { PopoverController } from '@ionic/angular';
+import {Component, ViewEncapsulation, OnInit, OnDestroy} from '@angular/core';
+import {PopoverController} from '@ionic/angular';
 
-import { Store } from '@ngxs/store';
-import { FilterMovies, SaveFilterMovies } from '../store/actions/movies.actions';
+import {Store} from '@ngxs/store';
+import {FilterMovies, SaveFilterMovies} from '../store/actions/movies.actions';
 
-import { Observable } from 'rxjs';
+import {Observable} from 'rxjs';
 
-import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+import {FormBuilder, FormGroup, FormControl} from '@angular/forms';
 
-import { Subject } from 'rxjs/Subject';
-import { takeUntil, first } from 'rxjs/operators';
+// import { Subject } from 'rxjs/Subject';
 
 @Component({
   selector: 'app-filter-movie-popover',
@@ -37,14 +36,14 @@ export class FilterMoviePopoverComponent implements OnInit, OnDestroy {
 
   filter$: Observable<any>;
   filterSubscription: any;
-  private unsubscribe$ = new Subject<void>();
+  // private unsubscribe$ = new Subject<void>();
 
   filterForm: FormGroup;
 
-  customPopoverOptions: any = {
-    header: 'Genre',
-    subHeader: 'Select movie genre',
-  };
+  // customPopoverOptions: any = {
+  //   header: 'Genre',
+  //   subHeader: 'Select movie genre',
+  // };
 
   genres = [
     {id: 1, name: 'Action', image: 'assets/movies-genres/action.png'},
@@ -58,15 +57,15 @@ export class FilterMoviePopoverComponent implements OnInit, OnDestroy {
     {id: 9, name: 'Romance', image: 'assets/movies-genres/romance.png'},
     {id: 10, name: 'Science fiction', image: 'assets/movies-genres/science fiction.png'},
     {id: 11, name: 'Westerns', image: 'assets/movies-genres/westerns.png'}
-];
+  ];
 
-  constructor(private popoverCtrl: PopoverController, private store: Store, private zone: NgZone, private formBuilder: FormBuilder) {
+  constructor(private popoverCtrl: PopoverController, private store: Store, private formBuilder: FormBuilder) {
     this.createForm();
   }
 
   createForm() {
     this.filterForm = this.formBuilder.group({
-      rate: new FormControl(''),
+      // rate: new FormControl(''),
       years: new FormControl(''),
       genre: new FormControl('')
     });

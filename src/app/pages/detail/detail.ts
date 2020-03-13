@@ -1,26 +1,26 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import {Component, ViewEncapsulation} from '@angular/core';
 
-import { Movie } from '../../models/movie.model';
+import {Movie} from '../../models/movie.model';
 
-import { Store } from '@ngxs/store';
-import { Observable } from 'rxjs';
+import {Store} from '@ngxs/store';
+import {Observable} from 'rxjs';
 
-import { YoutubeApiService } from '../../providers/youtube-api-service';
+import {YoutubeApiService} from '../../providers/youtube-api-service';
 
-import { Plugins, Capacitor } from '@capacitor/core';
+import {Plugins, Capacitor} from '@capacitor/core';
 
-import { ModalController } from '@ionic/angular';
-import { YoutubeModalComponent } from '../../modals/youtube-modal/youtube.modal';
-import { CommentModalComponent } from '../../modals/comment-modal/comment.modal';
-import { ShowCommentsModalComponent } from '../../modals/show-comments-modal/show.comments.modal';
-import { ShowActorsModalComponent } from './../../modals/show-actors-modal/show.actors.modal';
+import {ModalController} from '@ionic/angular';
+import {YoutubeModalComponent} from '../../modals/youtube-modal/youtube.modal';
+import {CommentModalComponent} from '../../modals/comment-modal/comment.modal';
+import {ShowCommentsModalComponent} from '../../modals/show-comments-modal/show.comments.modal';
+import {ShowActorsModalComponent} from '../../modals/show-actors-modal/show.actors.modal';
 
-import { LikeMovie, FavoriteMovie } from '../../store/actions/movies.actions';
-import { MovieState } from '../../store/state/movies.state';
-import { map } from 'rxjs/operators';
-import { ActivatedRoute } from '@angular/router';
+import {LikeMovie, FavoriteMovie} from '../../store/actions/movies.actions';
+import {MovieState} from '../../store/state/movies.state';
+import {map} from 'rxjs/operators';
+import {ActivatedRoute} from '@angular/router';
 
-import { IziToastService } from '../../providers/izi-toast.service';
+import {IziToastService} from '../../providers/izi-toast.service';
 
 @Component({
   selector: 'app-page-detail',
@@ -34,7 +34,7 @@ export class DetailComponent {
   selectedMovie: Observable<Movie>;
   movie: Movie;
   genreImages: string[] = ['action', 'comedy', 'crime', 'documentary', 'drama', 'fantasy', 'film noir',
-                           'horror', 'romance', 'science fiction', 'westerns', 'animation'];
+    'horror', 'romance', 'science fiction', 'westerns', 'animation'];
 
   constructor(private store: Store, private youtubeApiService: YoutubeApiService, private modalCtrl: ModalController,
               private activatedRoute: ActivatedRoute, private iziToast: IziToastService) {
@@ -62,8 +62,8 @@ export class DetailComponent {
       }
     );
     */
-   const id = this.activatedRoute.snapshot.paramMap.get('id');
-   this.getMovieDetails(id);
+    const id = this.activatedRoute.snapshot.paramMap.get('id');
+    this.getMovieDetails(id);
   }
 
   getMovieDetails(id: string) {
@@ -85,33 +85,33 @@ export class DetailComponent {
 
     // Code to use Youtube Api Service: providers/youtube-api-service.ts
     this.youtubeApiService.searchMovieTrailer(this.movie.title)
-    .subscribe(result => {
-      if (result.items.length > 0) {
-        console.log(result);
-        const { videoId } = result.items[0].id;
-        this.movie.videoId = videoId;
+      .subscribe(result => {
+          if (result.items.length > 0) {
+            console.log(result);
+            const {videoId} = result.items[0].id;
+            this.movie.videoId = videoId;
 
-        // Code to use capacitor-youtube-player plugin.
-        console.log('DetailsPage::watchTrailer -> platform: ' + Capacitor.platform);
-        if (Capacitor.platform === 'web') {
-          const componentProps = { modalProps: { item: this.movie}};
-          this.presentModal(componentProps, YoutubeModalComponent);
-        } else { // Native
-          this.testYoutubePlayerPlugin();
-        }
+            // Code to use capacitor-youtube-player plugin.
+            console.log('DetailsPage::watchTrailer -> platform: ' + Capacitor.platform);
+            if (Capacitor.platform === 'web') {
+              const componentProps = {modalProps: {item: this.movie}};
+              this.presentModal(componentProps, YoutubeModalComponent);
+            } else { // Native
+              this.testYoutubePlayerPlugin();
+            }
 
-        /*
-        if (Capacitor.platform === 'web') {
-          window.open('https://www.youtube.com/watch?v=' + videoId);
-        } else { // TODO: Use capacitor-youtube-player plugin.
-          window.open('https://www.youtube.com/watch?v=' + videoId, '_blank');
-        }
-        */
-      }
-    },
-    error => {
-      this.iziToast.show('Watch Trailer', 'Sorry, an error has occurred.', 'red', 'ico-error', 'assets/avatar.png');
-    });
+            /*
+            if (Capacitor.platform === 'web') {
+              window.open('https://www.youtube.com/watch?v=' + videoId);
+            } else { // TODO: Use capacitor-youtube-player plugin.
+              window.open('https://www.youtube.com/watch?v=' + videoId, '_blank');
+            }
+            */
+          }
+        },
+        error => {
+          this.iziToast.show('Watch Trailer', 'Sorry, an error has occurred.', 'red', 'ico-error', 'assets/avatar.png');
+        });
 
   }
 
@@ -132,13 +132,13 @@ export class DetailComponent {
 
   async testYoutubePlayerPlugin() {
 
-    const { YoutubePlayer } = Plugins;
+    const {YoutubePlayer} = Plugins;
 
-    const result = await YoutubePlayer.echo({value: 'hola' });
+    const result = await YoutubePlayer.echo({value: 'hola'});
     console.log('result', result);
 
-    const options = {width: 640, height: 360, videoId: this.movie.videoId};
-    const playerReady = await YoutubePlayer.initialize(options);
+    // const options = {width: 640, height: 360, videoId: this.movie.videoId};
+    // const playerReady = await YoutubePlayer.initialize(options);
   }
 
   onClickLike() {
@@ -154,13 +154,13 @@ export class DetailComponent {
 
   onClickComment() {
     console.log('DetailsPage::onClickComment');
-    const componentProps = { modalProps: { title: 'Comment', movie: this.movie}};
+    const componentProps = {modalProps: {title: 'Comment', movie: this.movie}};
     this.presentModal(componentProps, CommentModalComponent);
   }
 
   onClickShowComment() {
     console.log('DetailsPage::onClickShowComment');
-    const componentProps = { modalProps: { title: 'Comments', movie: this.movie}};
+    const componentProps = {modalProps: {title: 'Comments', movie: this.movie}};
     this.presentModal(componentProps, ShowCommentsModalComponent);
   }
 
@@ -198,7 +198,7 @@ export class DetailComponent {
       }).then(() => {
         console.log('Thanks for sharing!');
       })
-      .catch(console.error);
+        .catch(console.error);
     } else {
       // fallback
     }
@@ -206,7 +206,7 @@ export class DetailComponent {
 
   showActors() {
     console.log('DetailsPage::showActors | method called');
-    const componentProps = { modalProps: { actors: this.movie.cast}};
+    const componentProps = {modalProps: {actors: this.movie.cast}};
     this.presentModal(componentProps, ShowActorsModalComponent);
   }
 

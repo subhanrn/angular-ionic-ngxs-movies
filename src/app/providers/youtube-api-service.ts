@@ -1,7 +1,7 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { timeout, retryWhen, delay, map, filter } from 'rxjs/operators';
+import {Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {Observable} from 'rxjs';
+import {timeout, retryWhen, delay} from 'rxjs/operators';
 
 @Injectable()
 export class YoutubeApiService {
@@ -15,11 +15,11 @@ export class YoutubeApiService {
   searchMovieTrailer(movieTitle: string): Observable<any> {
     console.log(this.URL_BASE + `?key=${this.API_KEY}&q=${movieTitle}&type=video&part=snippet,id&maxResults=5`);
     return this.http
-    .get(encodeURI(this.URL_BASE + `?key=${this.API_KEY}&q=${movieTitle}&type=video&part=snippet,id&maxResults=5`))
-    .pipe(
-      retryWhen(error => error.pipe(delay(500))),
-      timeout(5000)
-    );
+      .get(encodeURI(this.URL_BASE + `?key=${this.API_KEY}&q=${movieTitle}&type=video&part=snippet,id&maxResults=5`))
+      .pipe(
+        retryWhen(error => error.pipe(delay(500))),
+        timeout(5000)
+      );
   }
 
 

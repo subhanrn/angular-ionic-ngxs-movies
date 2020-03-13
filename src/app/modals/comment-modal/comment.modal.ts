@@ -1,10 +1,10 @@
-import { Component, ViewEncapsulation, OnInit } from '@angular/core';
-import { ModalController, NavParams } from '@ionic/angular';
+import {Component, ViewEncapsulation, OnInit} from '@angular/core';
+import {ModalController, NavParams} from '@ionic/angular';
 
-import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+import {FormBuilder, FormGroup, FormControl, Validators} from '@angular/forms';
 
-import { EditMovie } from '../../store/actions/movies.actions';
-import { Store, Actions } from '@ngxs/store';
+import {EditMovie} from '../../store/actions/movies.actions';
+import {Store} from '@ngxs/store';
 
 @Component({
   selector: 'app-comment-modal',
@@ -27,13 +27,13 @@ export class CommentModalComponent implements OnInit {
   createForm() {
     this.commentForm = this.formBuilder.group({
       comment: new FormControl('', Validators.required),
-      rating: new FormControl('')
+      // rating: new FormControl('')
     });
   }
 
 
   ngOnInit() {
-    this.modal = { ...this.navParams.data.modalProps};
+    this.modal = {...this.navParams.data.modalProps};
   }
 
   dismiss() {
