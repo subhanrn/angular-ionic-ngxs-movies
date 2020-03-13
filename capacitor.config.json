@@ -1,5 +1,5 @@
 {
-  "appId": "com.ionic.movies",
+  "appId": "com.nahal.apps",
   "appName": "angular-ionic-ngxs-movies",
   "bundledWebRuntime": false,
   "webDir": "dist"

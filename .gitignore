@@ -5,6 +5,13 @@
 /dist-server
 /tmp
 /out-tsc
+/.ionic
+/.sourcemaps
+/.versions
+/platforms
+/plugins
+/www
+/android
 
 # dependencies
 /node_modules
@@ -42,3 +49,16 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+*~
+*.sw[mnpcod]
+.tmp
+*.tmp
+*.tmp.*
+*.sublime-project
+*.sublime-workspace
+UserInterfaceState.xcuserstate
+$RECYCLE.BIN/
+
+*.log
+log.txt
